@@ -10,7 +10,7 @@ import metier.Graphe;
 
 /**
  *
- * @author abdel
+ * @author ferdaous aaaa
  */
 
 //Algorithme class is an abscart class that's runnable
