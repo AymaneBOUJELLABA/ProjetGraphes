@@ -125,6 +125,7 @@ public class Sommet implements Comparable<Sommet>
             g2d.drawOval(position_x-(Configuration.taille_sommet+1), position_y-(Configuration.taille_sommet+1), Configuration.taille_sommet*2+2, Configuration.taille_sommet*2+2);
         }
         g2d.setColor(couleurLabel);
+        if(marked) g2d.drawString("+", position_x-5,  position_y-Configuration.taille_sommet - 5);
         int labelWidth = g2d.getFontMetrics().stringWidth(label);
         int labelHeight = g2d.getFontMetrics().getHeight();
         g2d.drawString(label, position_x-labelWidth/2, position_y+labelHeight/4);
