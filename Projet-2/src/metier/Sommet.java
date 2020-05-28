@@ -23,6 +23,8 @@ public class Sommet implements Comparable<Sommet>
     private int position_x;
     private int position_y;
     private boolean selected;
+    //we have to add a variable if sommet is marked 
+    private boolean marked = false;
 
     public String getLabel()
     {
@@ -83,6 +85,13 @@ public class Sommet implements Comparable<Sommet>
     {
         this.selected = selected;
     }
+    public boolean isMarked() {
+		return marked;
+	}
+
+	public void setMarked(boolean marked) {
+		this.marked = marked;
+	}
 
     public Sommet(Sommet o)
     {

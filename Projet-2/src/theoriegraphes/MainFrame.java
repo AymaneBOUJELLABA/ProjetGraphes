@@ -10,6 +10,7 @@ import algos.BellmanFord;
 import algos.DFS;
 import algos.Dijikstra;
 import algos.FordFolkersonResiduelle;
+import algos.FordForlkersonMarquage;
 import algos.Kruscal;
 import algos.Prim;
 import algos.Wireshall;
@@ -669,7 +670,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_fordfolkerson2ActionPerformed
 
     private void btn_fordfolkerson1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_fordfolkerson1ActionPerformed
-
+    	new Thread(new FordForlkersonMarquage(Canvas.getInstance().getGraphe(), Canvas.getInstance().getGraphe().getS(),Canvas.getInstance().getGraphe().getP())).start();
     }//GEN-LAST:event_btn_fordfolkerson1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

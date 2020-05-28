@@ -17,26 +17,24 @@ public class FordForlkersonMarquage extends Algorithme
 	private Graphe new_g;
     private Sommet depart;
     private Sommet destination;
+    private double flotMax;
 
-    public FordForlkersonMarquage(Graphe g,Sommet depart, Sommet destination)
-    {
+    public FordForlkersonMarquage(Graphe g,Sommet depart, Sommet destination) {
         super("Ford-Folkerson (Methode marquage)", g);
         new_g = new Graphe();
         this.depart = depart;
         this.destination = destination;
     }
+
     @Override
-    protected void preRun()
-    {
+    protected void preRun() {
         Configuration.resetImages();
         Canvas.getInstance().screenShot();
         Configuration.backup();
         Configuration.current_algo=this;
-        
         trace.append("Algorithme: "+nom+" Debut\n");
         new_g.getSommets().addAll(g.getSommets());
-        for(Arret ar : g.getArrets())
-        {
+        for(Arret ar : g.getArrets()){
             Arret copie = new Arret(ar, ar.getSommetA(), ar.getSommetB());
             new_g.getArrets().add(copie);
         }
@@ -46,99 +44,60 @@ public class FordForlkersonMarquage extends Algorithme
     }
     
     @Override
-    public void run()
-    {
+    public void run() {
         preRun();
         ArrayList<Chemin> chemins = new_g.getChemins(depart, destination);
         Collections.sort(chemins);
-        while(!chemins.isEmpty())
-        {
-            try
-            {
+        while(!chemins.isEmpty()){
+            try {
                 Thread.sleep(Configuration.sleep_time);
-            } catch (InterruptedException ex)
-            {
+            } catch (InterruptedException ex) {
                 Logger.getLogger(BFS.class.getName()).log(Level.SEVERE, null, ex);
             }
+            destination.setMarked(false);
             trace.append("--iteration: ").append(++iteration).append("\n");
             Chemin ch = chemins.get(0);
-            //epsilone +
-            ArrayList<Double>epsiPlus = new ArrayList<>();
-            //epsilone -
-            ArrayList<Double>epsiMin = new ArrayList<>();
-            //epsilone totale
-            double epsiloneT;
-            
-            for(int i =0 ; i<ch.getSommets().size()-1;i++)
-            {
-            	Arret ar = new_g.getArret(ch.getSommets().get(i), ch.getSommets().get(i+1));
-            	if(ar!=null) 
-            	{
-            		if(ar.getFlux()<ar.getCout())
-                	{ 
-                		epsiPlus.add(ar.getCout() - ar.getFlux());
-                	}
-            		Arret ar_retour = new_g.getArret(ar.getSommetB(), ar.getSommetA());
-            		if(ar_retour!=null) 
-            		{
-            			if(ar_retour.getFlux()>0)
-            			{
-            				epsiMin.add(ar_retour.getFlux());
-            			}
-            		}
-            		
-            		
-            	}
-            	
-            }
-            
             Double epsi = ch.epsilone();
-            for(int i=0; i<ch.getSommets().size()-1;i++)
-            {
+            for(int i=0; i<ch.getSommets().size()-1;i++){
                 Arret ar = new_g.getArret(ch.getSommets().get(i), ch.getSommets().get(i+1));
-                if(ar!=null)
-                {
-            
+                if(ar!=null){
+                	ar.getSommetA().setMarked(true);
+                	ar.getSommetB().setMarked(true);
+                	
                     double new_cout = ar.getCout()-epsi;
-                    Arret ar_retour = new_g.getArret(ch.getSommets().get(i+1), ch.getSommets().get(i));
+                    Arret ar_retour = new_g.getArret(ch.getSommets().get(i + 1), ch.getSommets().get(i));
                     
-                    if(ar_retour!=null)
-                    	ar_retour.setCout(ar_retour.getCout()+epsi);
-                    else
-                    {
+                    if(ar_retour!=null) ar_retour.setCout(ar_retour.getCout() + epsi);
+                    else{
                         new_g.addArret(ch.getSommets().get(i+1), ch.getSommets().get(i),epsi);
                     }
-                    if(new_cout==0)
-                    {
+                    if(new_cout==0){
                         new_g.getArrets().remove(ar);
-                    }else
-                    {
+                    }else{
                         ar.setCout(new_cout);
                     }
                 } 
             }
             
+            flotMax += epsi;
+            
             trace.append("    Chemin choisi: ").append(ch).append("\n");
+            
             Canvas.getInstance().repaint();
             Canvas.getInstance().screenShot();
             chemins = new_g.getChemins(depart, destination);
             Collections.sort(chemins);
         }
-        try
-        {
+        try {
             Thread.sleep(Configuration.sleep_time);
-        } catch (InterruptedException ex)
-        {
+        } catch (InterruptedException ex) {
             Logger.getLogger(BFS.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for(Arret ar:g.getArrets())
-        {
+        for(Arret ar:g.getArrets()){
             Arret ar_retour = new_g.getArret(ar.getSommetB(), ar.getSommetA());
-            if(ar_retour!=null)
-            {
+            if(ar_retour!=null){
                 ar.setFlux(ar_retour.getCout());
-            }else
-            {
+            }else{
                 ar.setFlux(0.0d);
             }
         }
@@ -147,9 +106,8 @@ public class FordForlkersonMarquage extends Algorithme
     }
 
     @Override
-    protected void postRun()
-    {
-        trace.append("--Flux Max= ").append(g.getFluxMax()).append("\n");
+    protected void postRun() {
+        trace.append("--Flux Max= ").append(flotMax).append("\n");
         trace.append("--graphe final: |V|= "+g.getV()+", |E|= "+g.getE()+", Densite= "+g.getDensite()+"\n");
         trace.append("Algorithme: ").append(nom).append(" Fin.\n");
         Canvas.getInstance().repaint();
@@ -157,3 +115,5 @@ public class FordForlkersonMarquage extends Algorithme
     }
 
 }
+
+
