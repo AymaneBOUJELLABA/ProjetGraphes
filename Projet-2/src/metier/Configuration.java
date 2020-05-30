@@ -131,6 +131,8 @@ public class Configuration
         MainFrame.btn_billmanford.setEnabled(c1 && c2 && c3 && c6 && pondere && oriente);
         MainFrame.btn_fordfolkerson2.setEnabled(c7 && c8 && oriente && pondere);
         //coloriage!
+        MainFrame.btn_WelchPowell.setEnabled(c1 && c2 && c3);
+
         //folkersonmarkage
     }
 }

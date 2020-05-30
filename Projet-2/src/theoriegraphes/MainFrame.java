@@ -13,6 +13,7 @@ import algos.FordFolkersonResiduelle;
 import algos.Kruscal;
 import algos.Prim;
 import algos.Wireshall;
+import algos.WelchPowell;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
@@ -91,7 +92,9 @@ public class MainFrame extends javax.swing.JFrame {
         btn_billmanford = new javax.swing.JButton();
         btn_fordfolkerson1 = new javax.swing.JButton();
         btn_fordfolkerson2 = new javax.swing.JButton();
+        btn_WelchPowell = new javax.swing.JButton();
         btn_enregistrer = new javax.swing.JButton();
+        
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jSlider1 = new javax.swing.JSlider();
@@ -235,6 +238,16 @@ public class MainFrame extends javax.swing.JFrame {
                 btn_fordfolkerson2ActionPerformed(evt);
             }
         });
+        
+        btn_WelchPowell.setText("WelchPowell (Coloriage)");
+        btn_WelchPowell.setEnabled(false);
+        btn_WelchPowell.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btn_WelchPowellActionPerformed(evt);
+            }
+        });
 
         btn_enregistrer.setText("Enregistrer");
         btn_enregistrer.setEnabled(false);
@@ -307,6 +320,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(btn_billmanford, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_fordfolkerson1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_fordfolkerson2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_WelchPowell, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btn_restore, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -349,6 +363,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(btn_fordfolkerson1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_fordfolkerson2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_WelchPowell)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -530,7 +546,15 @@ public class MainFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_bfsActionPerformed
+    
+    private void btn_WelchPowellActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_btn_bfsActionPerformed
+            new Thread(new WelchPowell(Canvas.getInstance().getGraphe())).start();
+        
+        
+    }//GEN-LAST:event_btn_bfsActionPerformed
 
+    
     private void btn_dfsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dfsActionPerformed
         if(Canvas.getInstance().getSelectionne()!=null){
             new Thread(new DFS(Canvas.getInstance().getGraphe(), Canvas.getInstance().getSelectionne())).start();
@@ -664,7 +688,8 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_billmanfordActionPerformed
 
-    private void btn_fordfolkerson2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_fordfolkerson2ActionPerformed
+    private void btn_fordfolkerson2ActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_btn_fordfolkerson2ActionPerformed
         new Thread(new FordFolkersonResiduelle(Canvas.getInstance().getGraphe(), Canvas.getInstance().getGraphe().getS(),Canvas.getInstance().getGraphe().getP())).start();
     }//GEN-LAST:event_btn_fordfolkerson2ActionPerformed
 
@@ -726,6 +751,7 @@ public class MainFrame extends javax.swing.JFrame {
     public static javax.swing.JButton btn_fordfolkerson2;
     public static javax.swing.JButton btn_kruskal;
     public static javax.swing.JButton btn_matrice;
+    public static javax.swing.JButton btn_WelchPowell;
     private javax.swing.JButton btn_mode_emploi;
     public static javax.swing.JButton btn_prim;
     public static javax.swing.JButton btn_restore;

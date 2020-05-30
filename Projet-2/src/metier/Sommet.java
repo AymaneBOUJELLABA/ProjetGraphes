@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,12 +24,23 @@ public class Sommet implements Comparable<Sommet>
     private int position_x;
     private int position_y;
     private boolean selected;
-
+    private double degree;
+    
     public String getLabel()
     {
         return label;
     }
-
+    
+    public void setdegree(double d)
+    {
+    	this.degree = d;
+    }
+    
+    public double getdegree()
+    {
+    	return degree;
+    }
+    
     public void setLabel(String label)
     {
         this.label = label;

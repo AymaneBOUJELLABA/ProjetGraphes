@@ -34,13 +34,14 @@ public class BFS extends Algorithme
         Canvas.getInstance().screenShot();
         Configuration.backup();
         Configuration.current_algo=this;
-        
         trace.append("Algorithme: "+nom+" Debut\n");
+        
         f = new Stack<>();
         m = new Stack<>();
         f.push(r);
         m.push(r);
         r.setCouleur(Configuration.coleur_parcour);
+        
         Canvas.getInstance().repaint();
         Canvas.getInstance().screenShot();   
     }

@@ -37,12 +37,13 @@ public class Graphe implements Cloneable
     public int[][] matriceAdj()
     {
         int[][] matrice = new int[sommets.size()][sommets.size()];
-        for (Arret ar : arrets)
+        for (Arret ar : arrets) 
         {
             if(Configuration.oriente)
             	matrice[sommets.indexOf(ar.getSommetA())][sommets.indexOf(ar.getSommetB())]=1;
             else
             {
+            	if(sommets.indexOf(ar.getSommetA()) < 0 || sommets.indexOf(ar.getSommetB()) < 0) continue;
                 matrice[sommets.indexOf(ar.getSommetA())][sommets.indexOf(ar.getSommetB())]=1;
                 matrice[sommets.indexOf(ar.getSommetB())][sommets.indexOf(ar.getSommetA())]=1;
             }
@@ -281,6 +282,8 @@ public class Graphe implements Cloneable
             else 
             	degree+=1;
         }
+        //on affecte la degree au sommet s
+        s.setdegree(degree);
         return degree;
     }
 
@@ -303,11 +306,19 @@ public class Graphe implements Cloneable
         }
         sommets.remove(selectionne);
     }
-
+    private int indexOf(Sommet s1, ArrayList<Sommet> sommets)
+	 {
+		for(int i=0;i<sommets.size();i++)
+		{
+			if(sommets.get(i).getLabel().equals(s1.getLabel()))
+				return i;
+		}
+		return -1;
+	 }
     public ArrayList<Sommet> getVoisinsWithOrigin(Sommet s)
     {
         ArrayList<Sommet> liste = new ArrayList<>();
-        int i = sommets.indexOf(s);
+        int i = indexOf(s,sommets);
         int[][] m = matriceAdj();
         for (int j = 0; j < m[i].length; j++)
         {          
@@ -321,7 +332,7 @@ public class Graphe implements Cloneable
     public ArrayList<Sommet> getVoisins(Sommet s)
     {
         ArrayList<Sommet> liste = new ArrayList<>();
-        int i = sommets.indexOf(s);
+        int i = indexOf(s,sommets);
         int[][] m = matriceAdj();
         for (int j = 0; j < m[i].length; j++)
         {          
