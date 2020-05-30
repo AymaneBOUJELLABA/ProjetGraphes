@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
+
 import metier.Configuration;
 import metier.Graphe;
 import metier.Sommet;
@@ -52,12 +54,12 @@ public class Canvas extends javax.swing.JPanel
             covered=false;
             repaint();
         });
-        JMenuItem deplacer = new JMenuItem("Deplacer");
-        deplacer.addActionListener((ActionEvent e) -> {
-            System.out.println("deplacer");
-            deplacement=true;
-            covered=false;
-        });
+//        JMenuItem deplacer = new JMenuItem("Deplacer");
+//        deplacer.addActionListener((ActionEvent e) -> {
+//            System.out.println("deplacer");
+//            deplacement=true;
+//            covered=false;
+    //    });
         JMenuItem informations = new JMenuItem("Informations");
         informations.addActionListener((ActionEvent e) -> {
             System.out.println("informations");
@@ -67,7 +69,7 @@ public class Canvas extends javax.swing.JPanel
             covered=false;
         });
         popup.add(supprimer);
-        popup.add(deplacer);
+//        popup.add(deplacer);
         popup.add(informations);
         popup.setInvoker(this);
         instance = this;
@@ -157,11 +159,11 @@ public class Canvas extends javax.swing.JPanel
     private void initComponents()
     {
 
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter()
-        {
-            public void mouseMoved(java.awt.event.MouseEvent evt)
+    	addMouseMotionListener(new java.awt.event.MouseMotionAdapter() 
+    	{
+            public void mouseDragged(java.awt.event.MouseEvent evt)
             {
-                formMouseMoved(evt);
+            	formMouseDragged(evt); //si le sommet est selectionner on va faire apple de cette fonction
             }
         });
         addMouseListener(new java.awt.event.MouseAdapter()
@@ -207,6 +209,21 @@ public class Canvas extends javax.swing.JPanel
             repaint();
         }
     }//GEN-LAST:event_formMouseMoved
+    
+	private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+	    	
+	    	// cette fonction npus permet de deplacer les sommets si on click
+			
+	    	if(!SwingUtilities.isLeftMouseButton(evt)) return;
+	    	//
+	        Sommet s = graphe.getSommetAtPosition(evt.getX(), evt.getY());
+	        
+	    	if(s!=null){
+	            s.setPosition_x(evt.getX()); //la position de nouveau X de sommet 
+	            s.setPosition_y(evt.getY()); //la position de nouveau Y de sommet
+	            repaint();
+	        }
+	    }
     private void clickGauch(java.awt.event.MouseEvent evt)
     {
         Sommet s = graphe.getSommetAtPosition(evt.getX(), evt.getY());
