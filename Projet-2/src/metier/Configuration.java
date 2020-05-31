@@ -132,7 +132,7 @@ public class Configuration
         MainFrame.btn_fordfolkerson2.setEnabled(c7 && c8 && oriente && pondere);
         MainFrame.btn_fordfolkerson1.setEnabled(c7 && c8 && oriente && pondere);
         //coloriage!
-        MainFrame.btn_WelchPowell.setEnabled(c1 && c2 && c3);
+        MainFrame.btn_WelchPowell.setEnabled(c1 && c2 && c3 && !oriente);
 
         //folkersonmarkage
     }
