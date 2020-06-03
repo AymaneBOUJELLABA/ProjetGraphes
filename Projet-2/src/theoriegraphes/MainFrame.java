@@ -5,6 +5,11 @@
  */
 package theoriegraphes;
 
+import javafx.*;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebView;
 import algos.BFS;
 import algos.BellmanFord;
 import algos.DFS;
@@ -21,6 +26,9 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.sun.javafx.application.PlatformImpl;
+import com.sun.media.jfxmediaimpl.platform.Platform;
+
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Desktop;
@@ -29,6 +37,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +45,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -448,7 +458,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Densite (d):");
 
-        btn_mode_emploi.setText("Mode d'emploi");
+        btn_mode_emploi.setText("Guide d'utilisation");
         btn_mode_emploi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_mode_emploiActionPerformed(evt);
@@ -655,12 +665,33 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_exporter_pdfActionPerformed
 
     private void btn_mode_emploiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mode_emploiActionPerformed
-        if (Desktop.isDesktopSupported()) {
-            try {
-                File mode_emploi = new File(MainFrame.class.getResource("mode_emploi.pdf").getPath());
-                Desktop.getDesktop().open(mode_emploi);
-            } catch (IOException ex) {
-                // no application registered for PDFs
+        if (Desktop.isDesktopSupported())
+        {
+            try
+            {
+            	PlatformImpl.startup(
+            			()->{
+            				JFrame web = new JFrame("Guide d'utilisation");
+
+            		        WebView webView = new WebView();
+
+            		        URL url = this.getClass().getResource("/UserGuide/calcul.html");
+            		        webView.getEngine().load(url.toString());
+
+            		        VBox vBox = new VBox(webView);
+            		        Scene scene = new Scene(vBox, 960, 600);
+
+            		        JFXPanel pan = new JFXPanel();
+            		        pan.setScene(scene);
+            		        
+            		        web.add(pan);
+            		        web.setVisible(true);
+            		        web.pack();
+            			}
+            			);          
+            } catch (Exception ex)
+            {
+                System.out.println(ex);
             }
         }
     }//GEN-LAST:event_btn_mode_emploiActionPerformed

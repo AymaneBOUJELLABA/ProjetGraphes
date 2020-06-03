@@ -210,15 +210,18 @@ public class Canvas extends javax.swing.JPanel
         }
     }//GEN-LAST:event_formMouseMoved
     
-	private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+	private void formMouseDragged(java.awt.event.MouseEvent evt)
+	{//GEN-FIRST:event_formMouseClicked
 	    	
-	    	// cette fonction npus permet de deplacer les sommets si on click
+	    	// cette fonction nous permet de deplacer les sommets si on click
 			
-	    	if(!SwingUtilities.isLeftMouseButton(evt)) return;
+	    	if(!SwingUtilities.isLeftMouseButton(evt))
+	    		return;
 	    	//
 	        Sommet s = graphe.getSommetAtPosition(evt.getX(), evt.getY());
 	        
-	    	if(s!=null){
+	    	if(s!=null)
+	    	{
 	            s.setPosition_x(evt.getX()); //la position de nouveau X de sommet 
 	            s.setPosition_y(evt.getY()); //la position de nouveau Y de sommet
 	            repaint();

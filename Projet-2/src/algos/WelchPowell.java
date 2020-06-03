@@ -30,7 +30,7 @@ public class WelchPowell extends Algorithme
         Canvas.getInstance().screenShot();
         Configuration.backup();
         Configuration.current_algo=this;
-        trace.append("Algorithme: "+nom+" Debut\n");
+        trace.append("-------- Algorithme: "+nom+" Debut ---------\n");
         
         ListeOrdone = new ArrayList<Sommet>(g.getSommets());
         //on ordonne la liste des sommets par degré
@@ -96,7 +96,7 @@ public class WelchPowell extends Algorithme
 	{
 		trace.append("\n Le nombre minimum des couleurs est : "+(nbrC+1));
         trace.append("\n--graphe final: |V|= "+g.getV()+", |E|= "+g.getE()+", Densite= "+g.getDensite()+"\n");
-        trace.append("Algorithme: "+nom+" Fin.\n");
+        trace.append("\n--- Algorithme: "+nom+" Fin.----\n");
         Canvas.getInstance().repaint();
         Canvas.getInstance().screenShot();
 	}
