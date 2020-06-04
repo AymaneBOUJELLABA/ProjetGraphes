@@ -210,7 +210,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel6.setBackground(Color.black);
         jLabel6.setOpaque(true);
 
-        btn_wireshall.setText("Wireshall");
+        btn_wireshall.setText("Wareshall");
         btn_wireshall.setEnabled(false);
         btn_wireshall.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
