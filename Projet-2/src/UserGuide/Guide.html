@@ -19,7 +19,7 @@
     <div class="container mt-5 ml-4">
       <div class="row">
         <div class="col-4">
-          <div class="list-group" id="list-tab" role="tablist">
+          <div class="list-group " id="list-tab" role="tablist">
             <a
               class="list-group-item list-group-item-action active"
               id="list-introduction-list"
@@ -66,11 +66,17 @@
               role="tabpanel"
               aria-labelledby="list-introduction-list"
             >
+              <h5>Introduction</h5>
               <p>
                 Cette application nous permettera de créer des différent types
-                de graphes (orienté, pondéré,...) tous on appliquant différent
-                algorithmes sur ces graphes
+                de graphes (orienté, pondéré,...) tous en appliquant différent
+                Algorithmes sur ces graphes dans une façon très simple et "User Friendly"
               </p>
+              <img
+                  src="interface.png"
+                  alt="img-algo"
+                  class="rounded mx-auto d-block img-thumbnail"
+                />
             </div>
             <div
               class="tab-pane fade"
@@ -123,7 +129,72 @@
               role="tabpanel"
               aria-labelledby="list-graphe-list"
             >
-              3
+            <h5>Creation d'un graphe</h5>
+              <p>
+                Pour créer un graphe il faut suivre les étapes suivante : 
+              </p>
+              <ol>
+                <li>
+                  <p>
+                    Choisir le type du graphe : simple (ne choisissez aucune option), <strong>orienté</strong>, <strong>pondéré</strong> ou bien les deux puis cliquer sur <strong>Lancer</strong> :
+                    <img
+                      src="choix.png"
+                      alt="choix"
+                      class="rounded mx-auto d-block img-thumbnail"
+                    />
+                  </p>
+                </li>
+                <li>  
+                  <p>
+                    Cliquer sur l'espace vide au milieu, un message s'affichera demandant le nom du sommet a créer :
+                    <span class="text-primary">Vous pouvez déplacer le sommet en maintenent clique gauche et faite glisser la souris</span>
+                    <div class="text-center">
+                      <img
+                        src="input.png"
+                        alt="input"
+                        height="200"
+                        width="300"
+                        class="rounded mx-auto d-inline img-thumbnail"
+                      />
+                      <img
+                        src="1sommet.png"
+                        alt="1-sommet"
+                        class="rounded mx-auto d-inline img-thumbnail"
+                      />
+                    </div>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Pour lié deux sommet il faut simplement cliquer sur un sommet et puis cliquer sur un autres
+                    <ul style="margin-top: -10px ;">
+                      <li>
+                        <span class="text-danger">Orienté : le premier sommet selectionné sera concidéré comme la source de l'arrête!</span>
+                      </li>
+                      <li>
+                        <span class="text-danger">Pondéré : pour les graphes pondéré vous serez demander de saisir le coût</span>
+                      </li>
+                    </ul>
+                    <img
+                      src="2sommet.png"
+                      alt="2-sommets"
+                      height="200"
+                      width="300"
+                      class="rounded mx-auto d-block img-thumbnail mt-2"
+                    />
+                  </p>
+                </li>
+                <li>
+                  Pour Supprimer ou bien afficher tous les informations d'un sommet il faut simplement faire une clique droite sur le sommet et un petit menu sera affiché :
+                  <img
+                      src="delete.png"
+                      alt="img-algo"
+                      height="200"
+                      width="300"
+                      class="rounded mx-auto d-block img-thumbnail mt-2"
+                    />
+                </li>
+              </ol>
             </div>
             <div
               class="tab-pane fade"
