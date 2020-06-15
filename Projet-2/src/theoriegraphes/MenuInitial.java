@@ -12,6 +12,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -23,6 +24,7 @@ public class MenuInitial extends javax.swing.JPanel {
      * Creates new form MenuInitial
      */
     public MenuInitial() {
+    	setBackground(Color.WHITE);
         initComponents();
     }
 
@@ -36,7 +38,7 @@ public class MenuInitial extends javax.swing.JPanel {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLayeredPane1.setBackground(Color.LIGHT_GRAY);
+        jLayeredPane1.setBackground(Color.WHITE);
         jToggleButton1 = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
         jToggleButton2 = new javax.swing.JToggleButton();
@@ -60,7 +62,8 @@ public class MenuInitial extends javax.swing.JPanel {
         jLayeredPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jToggleButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         
-        JLabel lblNewLabel = new JLabel("Remarque : ceci est un choix, le graphe est par defaut sans orientation");
+        JLabel lblNewLabel = new JLabel("Veuillez selectionner le type du graphe ( par d\u00E9faut il est non orient\u00E9 et non pond\u00E9r\u00E9 ) ");
+        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setForeground(Color.RED);
         lblNewLabel.setFont(new Font("Modern No. 20", Font.ITALIC, 16));
 
@@ -68,29 +71,29 @@ public class MenuInitial extends javax.swing.JPanel {
         jLayeredPane1Layout.setHorizontalGroup(
         	jLayeredPane1Layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(jLayeredPane1Layout.createSequentialGroup()
-        			.addContainerGap(65, Short.MAX_VALUE)
+        			.addContainerGap(90, Short.MAX_VALUE)
         			.addGroup(jLayeredPane1Layout.createParallelGroup(Alignment.LEADING, false)
         				.addComponent(jToggleButton2, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         				.addComponent(jToggleButton1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         				.addComponent(jButton1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
         			.addGap(248))
         		.addGroup(jLayeredPane1Layout.createSequentialGroup()
-        			.addGap(23)
+        			.addContainerGap()
         			.addComponent(lblNewLabel)
-        			.addContainerGap(52, Short.MAX_VALUE))
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
         	jLayeredPane1Layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(jLayeredPane1Layout.createSequentialGroup()
-        			.addGap(148)
+        			.addGap(112)
+        			.addComponent(lblNewLabel)
+        			.addGap(18)
         			.addComponent(jToggleButton2)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addComponent(jToggleButton1)
         			.addGap(28)
         			.addComponent(jButton1)
-        			.addGap(18)
-        			.addComponent(lblNewLabel)
-        			.addGap(113))
+        			.addGap(141))
         );
         jLayeredPane1.setLayout(jLayeredPane1Layout);
 

@@ -125,10 +125,10 @@ public class Configuration
         MainFrame.btn_bfs.setEnabled(c3 && c6);
         MainFrame.btn_dfs.setEnabled(c3 && c6);
         MainFrame.btn_wireshall.setEnabled(c1 && c2 && c3);
-        MainFrame.btn_prim.setEnabled(c1 && c2 && c3);
-        MainFrame.btn_kruskal.setEnabled(c1 && c2 && c3);
-        MainFrame.btn_dijikstra.setEnabled(c1 && c2 && c3 && c6 && pondere_positive && oriente);
-        MainFrame.btn_billmanford.setEnabled(c1 && c2 && c3 && c6 && pondere && oriente);
+        MainFrame.btn_prim.setEnabled(c1 && c2 && c3 && !oriente && pondere);
+        MainFrame.btn_kruskal.setEnabled(c1 && c2 && c3 && !oriente && pondere);
+        MainFrame.btn_dijikstra.setEnabled(c1 && c2 && c3 && c6 && pondere_positive);
+        MainFrame.btn_billmanford.setEnabled(c1 && c2 && c3 && c6 && pondere);
         MainFrame.btn_fordfolkerson2.setEnabled(c7 && c8 && oriente && pondere);
         MainFrame.btn_fordfolkerson1.setEnabled(c7 && c8 && oriente && pondere);
         //coloriage!
