@@ -32,6 +32,7 @@ import com.sun.media.jfxmediaimpl.platform.Platform;
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.image.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -53,33 +54,42 @@ import metier.Arret;
 import metier.Configuration;
 import metier.Sommet;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 /**
  *
- * @author abdel
+ * @author Aymane
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame
+{
     private static MainFrame instance;
-    public static MainFrame getInstance(){
-        if(instance==null){
+    public static MainFrame getInstance()
+    {
+        if(instance==null)
+        {
             instance = new MainFrame();
         }
         return instance;
     }
     
-    private MainFrame() {
+    private MainFrame()
+    {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/UserGuide/icon.png")));
+    	setTitle("Graphe Editor");
     	setBackground(Color.WHITE);
     	getContentPane().setBackground(Color.WHITE);
         initComponents();
     }
     
-    public void setCentrePanel(JPanel p){
+    public void setCentrePanel(JPanel p)
+    {
         jScrollPane2.setViewportView(p);
     }
 
